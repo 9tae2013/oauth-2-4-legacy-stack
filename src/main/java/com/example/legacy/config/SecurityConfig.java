@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Configuration
     public static class OtherTokenConfiguration extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
             http
                     .addFilterBefore(new OncePerRequestFilter() {
                         @Override
@@ -77,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }, UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                         .anyRequest().authenticated();
+            // @formatter:on
         }
     }
 
@@ -85,6 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
         @Override
         public void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
             http
                     .sessionManagement()
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -94,6 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .and()
                     .authorizeRequests()
                         .anyRequest().authenticated();
+            // @formatter:on
         }
     }
 
